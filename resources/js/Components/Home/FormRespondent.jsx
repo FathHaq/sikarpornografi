@@ -34,7 +34,7 @@ export default function FormRespondent() {
           value={data.name} 
           type='text' 
           placeholder='Nama Lengkap' 
-          className="input input-bordered input-success w-full max-w-xs mt-2" 
+          className="input input-bordered input-success w-full  mt-2" 
           onChange={handleOnChange}
           required
         />
@@ -47,7 +47,7 @@ export default function FormRespondent() {
           value={data.email} 
           type='text' 
           placeholder='Alamat Email' 
-          className="input input-bordered input-success w-full max-w-xs mt-2" 
+          className="input input-bordered input-success w-full  mt-2" 
           onChange={handleOnChange}
           required
         />
@@ -56,7 +56,7 @@ export default function FormRespondent() {
       <div className='flex gap-5'>
         <InputLabel name='old' className='' label='Umur'>
           <select 
-            className="select select-success w-full max-w-xs"
+            className="select select-success w-full "
             name='old'
             id='old'
             value={data.old}
@@ -73,7 +73,7 @@ export default function FormRespondent() {
         </InputLabel>
         <InputLabel name='gender' className='' label='Jenis Kelamin'>
         <select 
-            className="select select-success w-full max-w-xs"
+            className="select select-success w-full "
             name='gender'
             id='gender'
             value={data.gender}
@@ -93,7 +93,7 @@ export default function FormRespondent() {
           value={data.address} 
           type='text' 
           placeholder='Alamat Email' 
-          className="textarea textarea-bordered textarea-success w-full max-w-xs mt-2" 
+          className="textarea textarea-bordered textarea-success w-full mt-2" 
           onChange={handleOnChange}
           required
         />

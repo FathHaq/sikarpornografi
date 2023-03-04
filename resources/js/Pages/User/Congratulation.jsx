@@ -17,7 +17,7 @@ export default function Congratulation(props) {
   const submit = async (e) => {
       e.preventDefault();
       
-      router.post('/result', {
+      router.post('/hasil', {
           result_id: keterangan,
           cf_value: props.cfCombine
       });

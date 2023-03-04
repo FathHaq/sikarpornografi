@@ -17,6 +17,7 @@ class ResultController extends Controller
         $idUser = Auth::user()->id;
         $answers = UserAnswer::where('user_id', $idUser)->get();
         $expertValues = Question::all();
+        // $last = Question::latest('id')->first()->id;
         $results = Result::get();
 
         // $cfHE = [0.32,0.32,0.32,0.12,0.16,0.24,0.48,0.32];
@@ -71,6 +72,6 @@ class ResultController extends Controller
 
         $last = UserResult::latest()->first();
 
-        return redirect()->route('result.show', $last->id);
+        return redirect()->route('hasil.show', $last->id);
     }
 }

@@ -54,48 +54,20 @@ class QuestionController extends Controller
     public function show($id)
     {
         $quest = Question::where('id', $id)->get();
-        $last = Question::latest('id')->first()->id;
         $cvalue = CertaintyValue::all();
 
-        if ($id > $last) {
-            return redirect()->route('result.index');
-        }
-
-        return inertia('User/Quest', [
-            'quest' => $quest,
-            'cvalue' => $cvalue,
-            'last' => $last,
-        ]);
-    }
-
-    public function coba()
-    {
         $idUser = Auth::user()->id;
-        $answers = UserAnswer::where('user_id', $idUser)->get();
-        $expertValues = Question::all();
+        $valid = UserAnswer::where(['user_id' => $idUser, 'quest_id' => $id ])->get();
+        // dd($valid->toArray());
 
-        $cfHE = [];
-
-        foreach ($answers as $index => $answer) {
-            // $data = $answer->cf_h * $expertValues[$index]->cf_e;
-            array_push($cfHE, $index);
+        if($valid) {
+            return inertia('User/Quest', [
+                'quest' => $quest,
+                'cvalue' => $cvalue,
+            ]);
         }
 
-        dd($cfHE);
-
-        $cfCombine = 0;
-
-
-        foreach ($cfHE as $index => $value) {
-            if ($index == 0) {
-                $cfCombine += $value;
-            } 
-            if ($index < count($cfHE)-1) {
-                $cfCombine = $cfCombine + $cfHE[$index+1]*(1 - $cfCombine);
-            }
-        }
-        
-        dd($cfCombine);
+        return redirect(route('pertanyaan.edit', $id));
     }
     
     /**
@@ -120,8 +92,16 @@ class QuestionController extends Controller
             'cf_h'      => $request->cf_h,
         ]);
 
+        $last = Question::latest('id')->first()->id;
+
+        if ($request->quest_id == $last) {
+            return redirect()->route('hasil.index');
+        }
+
+        // dd($request->quest_id);
+
         //redirect
-        return redirect()->route('questions.show', $request->quest_id+1)->with('success', 'Data Berhasil Disimpan!');
+        return redirect()->route('pertanyaan.show', $request->quest_id+1)->with('success', 'Data Berhasil Disimpan!');
     }
 
     public function result(Request $request)
@@ -146,7 +126,7 @@ class QuestionController extends Controller
         ]);
 
         //redirect
-        return redirect()->route('questions.show', $request->quest_id+1)->with('success', 'Data Berhasil Disimpan!');
+        return redirect()->route('pertanyaan.show', $request->quest_id+1)->with('success', 'Data Berhasil Disimpan!');
     
     }
     
@@ -156,10 +136,18 @@ class QuestionController extends Controller
      * @param  mixed $question
      * @return void
      */
-    public function edit(Question $question)
+    public function edit($id)
     {
-        return inertia('Quest/Edit', [
+        $quest = Question::where('id', $id)->first();
+        $cvalue = CertaintyValue::all();
+
+        $idUser = Auth::user()->id;
+        $question = UserAnswer::where(['user_id' => $idUser, 'quest_id' => $id ])->get();
+
+        return inertia('User/Quest/Edit', [
             'question' => $question,
+            'quest' => $quest,
+            'cvalue' => $cvalue,
         ]);
     }
     
@@ -170,8 +158,10 @@ class QuestionController extends Controller
      * @param  mixed $question
      * @return void
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
+        $question = UserAnswer::where('id', $id)->first();
+        dd($question->toArray());
         //set validation
         $request->validate([
             'user_id'  => 'required',
@@ -181,13 +171,11 @@ class QuestionController extends Controller
 
         //update question
         $question->update([
-            'user_id'   => $request->user_id,
-            'quest_id'  => $request->quest_id,
             'cf_h'      => $request->cf_h,
         ]);
 
         //redirect
-        return redirect()->route('questions.index')->with('success', 'Data Berhasil Diupdate!');
+        return redirect()->route('pertanyaan.index')->with('success', 'Data Berhasil Diupdate!');
     }
     
     /**
@@ -202,6 +190,6 @@ class QuestionController extends Controller
         $question->delete();
 
         //redirect
-        return redirect()->route('questions.index')->with('success', 'Data Berhasil Dihapus!');
+        return redirect()->route('pertanyaan.index')->with('success', 'Data Berhasil Dihapus!');
     }
 }

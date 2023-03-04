@@ -1,3 +1,4 @@
+import QuestLayout from '@/Layouts/QuestLayout';
 import { Head, Link } from '@inertiajs/react';
 import React from 'react'
 
@@ -6,9 +7,8 @@ export default function Result(props) {
     const result = props.userResult[0];
     const solution = props.solution[0];
 
-    console.log(solution);
   return (
-    <div className='w-screen h-screen flex flex-col bg-slate-200 items-center justify-center'>
+    <QuestLayout>
         <Head title='Result'/>
         <div className="card w-96 bg-base-100 shadow-xl p-6">
             <div className='flex gap-5'>
@@ -69,6 +69,6 @@ export default function Result(props) {
                 </Link>
             </div>
         </div>
-    </div>
+    </QuestLayout>
   )
 }

@@ -55,6 +55,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('questions.show',1));
+        return redirect(route('pertanyaan.show',1));
     }
 }

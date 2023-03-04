@@ -92,7 +92,7 @@ class QuestionController extends Controller
             'quest' => 'required',
             'cf_e'  => 'required',
         ]);
-
+        
         //update question
         $question->update([
             'code'      => $request->code,

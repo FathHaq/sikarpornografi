@@ -44,11 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard' , DashboardController::class)->name('dashboard');
     // Route::resource('/questions', QuestionController::class);
     // Route::post('/questions/start', [QuestionController::class, 'start'])->name('question.start');
-    Route::get('/questions/{id}', [QuestionController::class, 'show'])->name('questions.show');
-    Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
-    // Route::get('/result', [ResultController::class, 'index'])->name('result.index');
-    // Route::post('/result', [ResultController::class, 'store'])->name('result.store');
-    // Route::get('/result/{id}', [ResultController::class, 'show'])->name('result.show');
+    Route::resource('/pertanyaan', QuestionController::class);
+    Route::get('/hasil', [ResultController::class, 'index'])->name('hasil.index');
+    Route::post('/hasil', [ResultController::class, 'store'])->name('hasil.store');
+    Route::get('/hasil/{id}', [ResultController::class, 'show'])->name('hasil.show');
     Route::get('/coba' , [QuestionController::class, 'coba']);
 });
 

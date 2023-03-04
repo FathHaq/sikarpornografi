@@ -5,9 +5,7 @@ import { Head, Link, useForm } from '@inertiajs/react'
 import React, { useState } from 'react'
 
 export default function Home(props) {
-  console.log(props);
 
- 
   return (
     <>
       <Head title='Home' />

@@ -3,7 +3,7 @@ export default function PrimaryButton({ className = '', disabled, children, ...p
         <button
             {...props}
             className={
-                `btn btn-outline btn-success ${
+                `btn btn-outline btn-primary ${
                     disabled && 'opacity-25'
                 } ` + className
             }
