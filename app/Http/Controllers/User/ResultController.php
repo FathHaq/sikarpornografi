@@ -30,12 +30,23 @@ class ResultController extends Controller
         }
 
         foreach ($cfHE as $index => $value) {
+            // Rumus yang ada di youtube ->
+
             if ($index == 0) {
-                $cfCombine += $value;
-            } 
-            if ($index < count($cfHE)-1) {
-                $cfCombine = $cfCombine + $cfHE[$index+1]*(1 - $cfCombine);
+              $cfCombine = $value + $cfHE[$index + 1] * (1 - $value);
+            } else if ($index < count($cfHE)-1) {
+              $cfCombine = $cfCombine + $cfHE[$index+1] * (1 - $cfCombine);
             }
+
+            // Rumus dengan hasil yang gw mau ->
+
+            // if ($index == 0) {
+            //   $cfCombine = ($value + $cfHE[$index + 1]) * (1 - $value);
+            //   array_push($cfHEcombine, $cfCombine);
+            // } else if ($index < count($cfHE)-1) {
+            //   $cfCombine = ($cfCombine + ($cfHE[$index+1] ?? null)) * (1 - $cfCombine);
+            //   array_push($cfHEcombine, $cfCombine);
+            // }
         }
         // dd($cfCombine);
 
@@ -74,4 +85,5 @@ class ResultController extends Controller
 
         return redirect()->route('hasil.show', $last->id);
     }
+
 }

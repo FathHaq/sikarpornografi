@@ -1,4 +1,5 @@
 import PrimaryButton from '@/Components/PrimaryButton';
+import QuestLayout from '@/Layouts/QuestLayout';
 import { Head, Link, router } from '@inertiajs/react'
 import React, { useState } from 'react'
 
@@ -24,16 +25,19 @@ export default function Congratulation(props) {
   }
 
   return (
-    <div className='w-full h-screen flex flex-col items-center justify-center bg-slate-200 px-5 lg:px-20 text-center gap-3'>
+    <QuestLayout kelas={'-z-50'}>
       <Head title='Congratulation'/>
-        <h1 className='font-semibold text-8xl'>Selamat</h1>
+      <div className=' text-white text-center z-50'>
+        <h1 className='font-semibold text-9xl'>Selamat</h1>
         <p className='text-lg'>Anda telah menyelesaikan Quisioner-nya</p>
         {/* <Link href={route('result.show', props.auth.user.id)} className='btn btn-outline btn-success mt-20'>Lihat Hasil</Link> */}
         <form onSubmit={submit}>
-          <PrimaryButton className="ml-4" >
+          <button className="mt-8 btn bg-white hover:bg-purple-900 text-purple-900 hover:text-white"  >
             Lihat Hasil
-          </PrimaryButton>
+          </button>
         </form>
-    </div>
+      </div>
+    </QuestLayout>
+    
   )
 }

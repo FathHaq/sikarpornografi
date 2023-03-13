@@ -27,38 +27,39 @@ export default function Quest(props) {
     setCvalue('')
     setTimeout(() => {
       setShow(true)
-    }, 1000)
+    }, 1500)
   }
 
 
   return (
     <QuestLayout>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact mx-5 lg:w-[40rem] bg-base-100 shadow-xl">
         {
           show ?
             <div className="card-body">
-              <h2 className="card-title">{quest.quest} </h2>
+              <h2 className="card-title text-center lg:text-2xl mb-5">{quest.quest} </h2>
               <form className='card-actions flex-col' onSubmit={submit}>
                 {
                   props.cvalue.map((cvalue, index) => (
-                    <div className='flex gap-2' key={index}>
-                      <input
-                        type="radio"
-                        name="cf_h"
-                        id={`cfh${index}`}
-                        value={cvalue.cv}
-                        class="radio radio-primary"
-                        onChange={(e) => setCvalue(e.target.value)}
-                      />
-                      <label htmlFor={`cfh${index}`}>{cvalue.define}</label>
-                    </div>
+                    // <div onClick={submit}>
+                      <label htmlFor={`cfh${index}`}  className='flex gap-2 btn btn-ghost btn-block justify-start ' key={index}>
+                        <input
+                          type="radio"
+                          name="cf_h"
+                          id={`cfh${index}`}
+                          value={cvalue.cv}
+                          class="radio radio-primary"
+                          onChange={(e) => setCvalue(e.target.value)}
+                        />
+                        <label htmlFor={`cfh${index}`} >{cvalue.define}</label>
+                      </label>
+                    // </div>
                   ))
                 }
                 <span className="text-red-600">
                   {errors.cf_h}
                 </span>
                 <div className="card-actions flex justify-end w-full px-5">
-                  {/* <Link href={route('pertanyaan.edit', quest.id - 1)} className='btn btn-outline btn-success'>Pref</Link> */}
                   <PrimaryButton className="ml-4">
                     Next
                   </PrimaryButton>

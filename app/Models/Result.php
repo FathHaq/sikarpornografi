@@ -10,4 +10,5 @@ class Result extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    
 }

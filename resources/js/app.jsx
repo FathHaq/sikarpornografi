@@ -1,6 +1,7 @@
 import './bootstrap';
 import '../css/app.css';
 import 'flowbite';
+import 'aos';
 
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';

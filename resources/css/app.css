@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-utama {
+    @apply bg-[#ff6e6c] hover:bg-[#d55656] border-[#1f1235] border-[0px]
+}
+
+.tagline {
+    @apply text-[#1f1235] text-8xl font-black font-serif
+}
+
+.bagian {
+    @apply h-screen flex items-center justify-center gap-16
+}
+
+.bagian:nth
+
+.text-highlight {
+    @apply text-[#ff6e6c]
+}
+
+.status div {
+    @apply flex items-center justify-center
+}

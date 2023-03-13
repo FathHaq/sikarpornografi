@@ -61,9 +61,9 @@ export default function Result(props) {
                 <p className=''>{solution.solution}</p>
             </div>
             <div className='flex justify-between mt-10'>
-                <Link className="btn btn-outline btn-success">
+                {/* <Link href={route('pdf.download')} className="btn btn-outline btn-success">
                     Download PDF
-                </Link>
+                </Link> */}
                 <Link method='post' href={route('logout')} className="btn btn-outline btn-success" as='button'>
                     Back to Home
                 </Link>
